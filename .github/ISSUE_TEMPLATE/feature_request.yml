@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve Weatherender. Please describe the user problem before the implementation details.
+        Thanks for helping improve Overclock. Please describe the user problem before the implementation details.
   - type: textarea
     id: problem
     attributes:

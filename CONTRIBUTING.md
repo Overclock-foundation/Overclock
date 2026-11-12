@@ -60,7 +60,7 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 
 ## Reporting issues
 
-Found a bug or have a suggestion? Please open a [GitHub Issue](https://github.com/Weatherender-foundation/Weatherender/issues) with a clear description and, if applicable, steps to reproduce.
+Found a bug or have a suggestion? Please open a [GitHub Issue](https://github.com/Overclock-foundation/Overclock/issues) with a clear description and, if applicable, steps to reproduce.
 
 ## Code style
 

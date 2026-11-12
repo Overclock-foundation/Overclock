@@ -1,6 +1,6 @@
 # Copilot Instructions
 
-Act as a senior full-stack engineer contributing to Weatherender. Deliver
+Act as a senior full-stack engineer contributing to Overclock. Deliver
 production-quality changes that are correct, secure, maintainable, and
 consistent with the existing codebase.
 
