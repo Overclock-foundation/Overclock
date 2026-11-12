@@ -6,7 +6,7 @@
 *.md    @LyapinAlexey
 
 # Core application code
-/src/   @LyapinAlexey
+/algorithms/   @LyapinAlexey
 
 # CI & infrastructure
 /.github/ @LyapinAlexey
