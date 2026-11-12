@@ -1,0 +1,44 @@
+# Secret files
+.env
+weather_report.txt
+
+# Folders of Virtual Python
+venv/
+.venv/
+env/
+dist/
+build/
+*.egg-info/
+coverage.xml
+coverage/
+weatherender.egg-info
+
+# Python compilier
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Cache
+.coverage
+.mypy_cache/
+.ruff_cache/
+
+# System files
+.DS_Store
+Thumbs.db
+.vscode/
+*.iml/
+**/.idea/
+.agents/
+.aider*
+.specify/
+local.properties
+
+# Gradle cache & generated files
+**/build/
+**/.gradle/
+**/.kotlin/
+**/gradle-daemon-jvm.properties
+
+# Ixclude
+!.aider.conf.yml

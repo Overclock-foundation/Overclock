@@ -1,0 +1,30 @@
+# Maintainers
+
+This document lists the current maintainers of the **Overclock** project and the **Overclock Foundation**.
+
+## Core Maintainers
+
+| Name | GitHub | Role | Contact |
+|------|--------|------|---------|
+| **Alexey Lyapin** | [@LyapinAlexey](https://github.com/LyapinAlexey) | Founder & Lead Maintainer | [alexey.lyapin.inbox@gmail.com](mailto:alexey.lyapin.inbox@gmail.com) · [Telegram](https://t.me/LyapinAlexey) |
+| **Vadim Sarichev** | [@vadisarychev1514-pixel](https://github.com/vadisarychev1514-pixel) | Co-Maintainer | [vadim.sarichev.inbox@gmail.com](mailto:vadim.sarichev.inbox@gmail.com) · [Telegram](https://t.me/LIBERTY_FIGHTER) |
+
+**Personal site:** [lyapinalexey.github.io](https://lyapinalexey.github.io/)
+
+## Responsibilities
+
+- Reviewing and merging pull requests
+- Managing releases and versioning
+- Maintaining CI/CD and production deployment (Render + Supabase + Upstash)
+- Handling security reports (see [SECURITY.md](SECURITY.md))
+- Enforcing the [Code of Conduct](CODE_OF_CONDUCT.md)
+- Deciding on major architectural and licensing changes
+
+## Becoming a Maintainer
+
+Currently the project is maintained by a single person.
+If you have made significant contributions and would like to take on more responsibility, open an issue or contact the lead maintainer directly.
+
+## Emeritus Maintainers
+
+*None yet.*
