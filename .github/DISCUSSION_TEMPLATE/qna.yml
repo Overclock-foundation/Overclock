@@ -1,5 +1,3 @@
-name: "❓ Q&A & Support"
-description: "Ask a question about the codebase, architecture, or Docker deployment"
 title: "[Question]: "
 body:
   - type: textarea
