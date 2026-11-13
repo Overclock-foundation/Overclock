@@ -32,9 +32,17 @@ Follow the [Quick Start (Docker)](README.md#quick-start-docker) section in the R
 4. Open the app locally
 
 ## Running tests
-# FIXME: Update this section with the correct test setup instructions.
-Tests require a dedicated test database and container.
-See the [Running Tests](README.md#running-tests) section in the README for setup instructions.
+
+Run the test suite for each language from the repository root:
+
+```bash
+pytest -v
+go test ./...
+dotnet test tests/csharp/Overclock.Algorithms.Tests.csproj
+```
+
+Python tests use pytest, Go tests are under `tests/go/`, and C# tests use xUnit
+under `tests/csharp/`. C# tests require the .NET SDK.
 
 ## Commit conventions
 
