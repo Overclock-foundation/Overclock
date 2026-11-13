@@ -18,6 +18,7 @@ Before triggering the Spec-Kit workflow, determine the scope of the task:
   - Minor bug fixes or small code tweaks touching 1–2 files with obvious/unambiguous context.
   - Linter/formatting fixes, simple Mypy type annotation adjustments.
   - Minor chore or configuration updates.
+  - **My message explicitly requests a "fast-track" implementation.**
   *For Fast-Track tasks, you may edit files directly, run tests, and commit changes without creating `spec.md`/`plan.md` or waiting for Gate approvals.*
 
 - **MANDATORY SPEC-KIT WORKFLOW:**
@@ -41,7 +42,7 @@ planning artifacts listed below.
 
 ### Required cycle (strictly sequential, no skipping, no reordering)
 
-Use the Spec-Kit skills located under `.opencode/skills/` (`speckit-constitution`,
+Use the Spec-Kit skills located under `.github/skills/` (`speckit-constitution`,
 `speckit-specify`, `speckit-clarify`, `speckit-plan`, `speckit-tasks`,
 `speckit-analyze`, `speckit-implement`).
 
@@ -86,7 +87,7 @@ Use the Spec-Kit skills located under `.opencode/skills/` (`speckit-constitution
 
 ## Before Making Changes
 
-- **Spec-Driven Development:** For all new features, architecture changes, or complex tasks, follow the Mandatory Workflow Gate above. Align every spec and plan with the project's constitution (`speckit-constitution`).
+- **Spec-Driven Development:** For all new features, architecture changes, or complex tasks, follow the Mandatory Workflow Gate above. Align every spec and plan with the project's constitution (`speckit-constitution`). But if it is a small, obvious, and unambiguous change, you may fast-track it without creating `spec.md` or `plan.md`.
 - Inspect the relevant code, tests, and documentation. Follow existing
   architecture and conventions; do not assume a structure that is not present.
 - Keep changes focused. Avoid unrelated edits, unnecessary dependencies, and
