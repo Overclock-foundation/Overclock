@@ -16,9 +16,9 @@ namespace Overclock.Algorithms.Tests.Search
         [InlineData(new[] { 42 }, 42, 0)]
         [InlineData(new[] { 42 }, 7, -1)]
         [InlineData(new int[] { }, 1, -1)]
-        public void ReturnsIndexOrMinusOne(int[] arr, int target, int expected)
+        public void ReturnsIndexOrMinusOne(int[] values, int targetValue, int expectedIndex)
         {
-            Assert.Equal(expected, BinarySearchAlgorithm.BinarySearch(arr, target));
+            Assert.Equal(expectedIndex, BinarySearchAlgorithm.BinarySearch(values, targetValue));
         }
 
         [Fact]
@@ -30,17 +30,17 @@ namespace Overclock.Algorithms.Tests.Search
         [Fact]
         public void FindsTargetInLargeArray()
         {
-            int[] arr = Enumerable.Range(0, 1000).Select(i => i * 2).ToArray();
+            int[] values = Enumerable.Range(0, 1000).Select(index => index * 2).ToArray();
 
-            Assert.Equal(999, BinarySearchAlgorithm.BinarySearch(arr, 1998));
+            Assert.Equal(999, BinarySearchAlgorithm.BinarySearch(values, 1998));
         }
 
         [Fact]
         public void HandlesDuplicatesByReturningAMatchingIndex()
         {
-            int[] arr = { 1, 2, 2, 2, 3 };
+            int[] values = { 1, 2, 2, 2, 3 };
 
-            Assert.Equal(2, arr[BinarySearchAlgorithm.BinarySearch(arr, 2)]);
+            Assert.Equal(2, values[BinarySearchAlgorithm.BinarySearch(values, 2)]);
         }
 
         [Fact]
@@ -52,11 +52,11 @@ namespace Overclock.Algorithms.Tests.Search
         [Fact]
         public void DoesNotMutateTheArray()
         {
-            int[] arr = { 1, 3, 5, 7 };
+            int[] values = { 1, 3, 5, 7 };
 
-            BinarySearchAlgorithm.BinarySearch(arr, 5);
+            BinarySearchAlgorithm.BinarySearch(values, 5);
 
-            Assert.Equal(new[] { 1, 3, 5, 7 }, arr);
+            Assert.Equal(new[] { 1, 3, 5, 7 }, values);
         }
     }
 }

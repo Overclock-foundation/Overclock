@@ -4,31 +4,33 @@ namespace Overclock.Algorithms.Graph
 {
     public static class DfsAlgorithm
     {
-        public static List<int> Dfs(Dictionary<int, List<int>> graph, int start)
+        public static List<int> Dfs(Dictionary<int, List<int>> graph, int startNode)
         {
-            var visited = new HashSet<int>();
-            var order = new List<int>();
-            Visit(graph, start, visited, order);
-            return order;
+            var visitedNodes = new HashSet<int>();
+            var visitedOrder = new List<int>();
+
+            Visit(graph, startNode, visitedNodes, visitedOrder);
+
+            return visitedOrder;
         }
 
         private static void Visit(
             Dictionary<int, List<int>> graph,
-            int node,
-            HashSet<int> visited,
-            List<int> order)
+            int currentNode,
+            HashSet<int> visitedNodes,
+            List<int> visitedOrder)
         {
-            if (!visited.Add(node))
+            if (!visitedNodes.Add(currentNode))
                 return;
 
-            order.Add(node);
+            visitedOrder.Add(currentNode);
 
-            if (!graph.TryGetValue(node, out var neighbors))
+            if (!graph.TryGetValue(currentNode, out var neighbors))
                 return;
 
             foreach (int neighbor in neighbors)
             {
-                Visit(graph, neighbor, visited, order);
+                Visit(graph, neighbor, visitedNodes, visitedOrder);
             }
         }
     }

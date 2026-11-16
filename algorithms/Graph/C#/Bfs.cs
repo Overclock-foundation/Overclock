@@ -4,29 +4,30 @@ namespace Overclock.Algorithms.Graph
 {
     public static class BfsAlgorithm
     {
-        public static List<int> Bfs(Dictionary<int, List<int>> graph, int start)
+        public static List<int> Bfs(Dictionary<int, List<int>> graph, int startNode)
         {
-            var visited = new HashSet<int> { start };
-            var order = new List<int>();
-            var queue = new Queue<int>();
-            queue.Enqueue(start);
+            var queuedNodes = new Queue<int>();
+            var visitedNodes = new HashSet<int> { startNode };
+            var visitedOrder = new List<int>();
 
-            while (queue.Count > 0)
+            queuedNodes.Enqueue(startNode);
+
+            while (queuedNodes.Count > 0)
             {
-                int node = queue.Dequeue();
-                order.Add(node);
+                int currentNode = queuedNodes.Dequeue();
+                visitedOrder.Add(currentNode);
 
-                if (!graph.TryGetValue(node, out var neighbors))
+                if (!graph.TryGetValue(currentNode, out var neighbors))
                     continue;
 
                 foreach (int neighbor in neighbors)
                 {
-                    if (visited.Add(neighbor))
-                        queue.Enqueue(neighbor);
+                    if (visitedNodes.Add(neighbor))
+                        queuedNodes.Enqueue(neighbor);
                 }
             }
 
-            return order;
+            return visitedOrder;
         }
     }
 }

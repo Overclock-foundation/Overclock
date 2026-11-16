@@ -10,18 +10,22 @@ namespace Overclock.Algorithms.Tests.Graph
         [Fact]
         public void FindsCheapestPaths()
         {
-            var distances = DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), 0);
+            Dictionary<int, int> shortestDistances =
+                DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), 0);
 
-            Assert.Equal(0, distances[0]);
-            Assert.Equal(3, distances[1]);
-            Assert.Equal(1, distances[2]);
-            Assert.Equal(4, distances[3]);
+            Assert.Equal(0, shortestDistances[0]);
+            Assert.Equal(3, shortestDistances[1]);
+            Assert.Equal(1, shortestDistances[2]);
+            Assert.Equal(4, shortestDistances[3]);
         }
 
         [Fact]
         public void StartDistanceIsZero()
         {
-            Assert.Equal(0, DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), 0)[0]);
+            Dictionary<int, int> shortestDistances =
+                DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), 0);
+
+            Assert.Equal(0, shortestDistances[0]);
         }
 
         [Fact]
@@ -35,12 +39,12 @@ namespace Overclock.Algorithms.Tests.Graph
                 [3] = new(),
             };
 
-            var distances = DijkstraAlgorithm.Dijkstra(graph, 0);
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(graph, 0);
 
-            Assert.Equal(0, distances[0]);
-            Assert.Equal(1, distances[1]);
-            Assert.False(distances.ContainsKey(2));
-            Assert.False(distances.ContainsKey(3));
+            Assert.Equal(0, shortestDistances[0]);
+            Assert.Equal(1, shortestDistances[1]);
+            Assert.False(shortestDistances.ContainsKey(2));
+            Assert.False(shortestDistances.ContainsKey(3));
         }
 
         [Fact]
@@ -48,21 +52,21 @@ namespace Overclock.Algorithms.Tests.Graph
         {
             var graph = new Dictionary<int, List<(int neighbor, int weight)>> { [7] = new() };
 
-            var distances = DijkstraAlgorithm.Dijkstra(graph, 7);
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(graph, 7);
 
-            Assert.Single(distances);
-            Assert.Equal(0, distances[7]);
+            Assert.Single(shortestDistances);
+            Assert.Equal(0, shortestDistances[7]);
         }
 
         [Fact]
         public void ReturnsStartWhenGraphIsEmpty()
         {
-            var distances = DijkstraAlgorithm.Dijkstra(
-                new Dictionary<int, List<(int neighbor, int weight)>>(),
-                42);
+            var emptyGraph = new Dictionary<int, List<(int neighbor, int weight)>>();
 
-            Assert.Single(distances);
-            Assert.Equal(0, distances[42]);
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(emptyGraph, 42);
+
+            Assert.Single(shortestDistances);
+            Assert.Equal(0, shortestDistances[42]);
         }
 
         [Fact]
@@ -75,11 +79,11 @@ namespace Overclock.Algorithms.Tests.Graph
                 [2] = new(),
             };
 
-            var distances = DijkstraAlgorithm.Dijkstra(graph, 0);
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(graph, 0);
 
-            Assert.Equal(0, distances[0]);
-            Assert.Equal(1, distances[1]);
-            Assert.Equal(2, distances[2]);
+            Assert.Equal(0, shortestDistances[0]);
+            Assert.Equal(1, shortestDistances[1]);
+            Assert.Equal(2, shortestDistances[2]);
         }
 
         [Fact]
@@ -92,11 +96,11 @@ namespace Overclock.Algorithms.Tests.Graph
                 [2] = new(),
             };
 
-            var distances = DijkstraAlgorithm.Dijkstra(graph, 0);
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(graph, 0);
 
-            Assert.Equal(0, distances[0]);
-            Assert.Equal(0, distances[1]);
-            Assert.Equal(5, distances[2]);
+            Assert.Equal(0, shortestDistances[0]);
+            Assert.Equal(0, shortestDistances[1]);
+            Assert.Equal(5, shortestDistances[2]);
         }
 
         [Fact]
@@ -109,33 +113,34 @@ namespace Overclock.Algorithms.Tests.Graph
                 [2] = new() { (0, 1) },
             };
 
-            var distances = DijkstraAlgorithm.Dijkstra(graph, 0);
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(graph, 0);
 
-            Assert.Equal(0, distances[0]);
-            Assert.Equal(2, distances[1]);
-            Assert.Equal(5, distances[2]);
+            Assert.Equal(0, shortestDistances[0]);
+            Assert.Equal(2, shortestDistances[1]);
+            Assert.Equal(5, shortestDistances[2]);
         }
 
         [Fact]
         public void DoesNotMutateTheGraph()
         {
             var graph = GraphFixtures.WeightedGraph();
-            var snapshot = graph.ToDictionary(
-                pair => pair.Key,
-                pair => pair.Value.ToList());
+            var graphSnapshot = graph.ToDictionary(
+                entry => entry.Key,
+                entry => entry.Value.ToList());
 
             DijkstraAlgorithm.Dijkstra(graph, 0);
 
-            foreach (var (node, edges) in snapshot)
+            foreach (var (node, edges) in graphSnapshot)
                 Assert.Equal(edges, graph[node]);
         }
 
         [Fact]
         public void DistancesAreNonNegative()
         {
-            var distances = DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), 0);
+            Dictionary<int, int> shortestDistances =
+                DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), 0);
 
-            Assert.All(distances.Values, distance => Assert.True(distance >= 0));
+            Assert.All(shortestDistances.Values, distance => Assert.True(distance >= 0));
         }
 
         [Theory]
@@ -143,12 +148,13 @@ namespace Overclock.Algorithms.Tests.Graph
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void EveryDistanceIsReachableFromStart(int start)
+        public void EveryDistanceIsReachableFromStart(int startNode)
         {
-            var distances = DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), start);
+            Dictionary<int, int> shortestDistances =
+                DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), startNode);
 
-            Assert.Equal(0, distances[start]);
-            Assert.All(distances.Values, distance => Assert.True(distance >= 0));
+            Assert.Equal(0, shortestDistances[startNode]);
+            Assert.All(shortestDistances.Values, distance => Assert.True(distance >= 0));
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Overclock.Algorithms.Tests.Graph
 {
     internal static class GraphFixtures
     {
-        /// <summary>A small branching tree: 0 -> (1, 2), 1 -> (3, 4), 2 -> (5).</summary>
+        // 0 -> (1, 2), 1 -> (3, 4), 2 -> (5)
         public static Dictionary<int, List<int>> TreeGraph() => new()
         {
             [0] = new() { 1, 2 },
@@ -15,7 +15,7 @@ namespace Overclock.Algorithms.Tests.Graph
             [5] = new(),
         };
 
-        /// <summary>A directed cycle 0 -> 1 -> 2 -> 0.</summary>
+        // Directed cycle: 0 -> 1 -> 2 -> 0
         public static Dictionary<int, List<int>> CyclicGraph() => new()
         {
             [0] = new() { 1 },
@@ -23,7 +23,7 @@ namespace Overclock.Algorithms.Tests.Graph
             [2] = new() { 0 },
         };
 
-        /// <summary>Two components: 0 -> 1 and 2 -> 3.</summary>
+        // Two separate components: 0 -> 1 and 2 -> 3
         public static Dictionary<int, List<int>> DisconnectedGraph() => new()
         {
             [0] = new() { 1 },
@@ -32,7 +32,7 @@ namespace Overclock.Algorithms.Tests.Graph
             [3] = new(),
         };
 
-        /// <summary>Weighted graph where the cheapest path to 3 is 0 -> 2 -> 1 -> 3.</summary>
+        // Cheapest path to 3 is 0 -> 2 -> 1 -> 3
         public static Dictionary<int, List<(int neighbor, int weight)>> WeightedGraph() => new()
         {
             [0] = new() { (1, 4), (2, 1) },

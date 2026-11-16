@@ -14,43 +14,43 @@ namespace Overclock.Algorithms.Tests.Sort
         [InlineData(new int[] { }, new int[] { })]
         [InlineData(new[] { 2, 2, 1, 1 }, new[] { 1, 1, 2, 2 })]
         [InlineData(new[] { -3, 0, -10, 5 }, new[] { -10, -3, 0, 5 })]
-        public void SortsValues(int[] arr, int[] expected)
+        public void SortsValues(int[] values, int[] expectedValues)
         {
-            QuickSortAlgorithm.QuickSort(arr);
+            QuickSortAlgorithm.QuickSort(values);
 
-            Assert.Equal(expected, arr);
+            Assert.Equal(expectedValues, values);
         }
 
         [Fact]
         public void SortsInPlace()
         {
-            int[] arr = { 3, 1, 2 };
+            int[] values = { 3, 1, 2 };
 
-            QuickSortAlgorithm.QuickSort(arr);
+            QuickSortAlgorithm.QuickSort(values);
 
-            Assert.Equal(new[] { 1, 2, 3 }, arr);
+            Assert.Equal(new[] { 1, 2, 3 }, values);
         }
 
         [Fact]
         public void HandlesAllEqualValues()
         {
-            int[] arr = { 4, 4, 4, 4 };
+            int[] values = { 4, 4, 4, 4 };
 
-            QuickSortAlgorithm.QuickSort(arr);
+            QuickSortAlgorithm.QuickSort(values);
 
-            Assert.Equal(new[] { 4, 4, 4, 4 }, arr);
+            Assert.Equal(new[] { 4, 4, 4, 4 }, values);
         }
 
         [Fact]
         public void MatchesBuiltinSortOnRandomData()
         {
-            int[] arr = { 17, 4, 42, 8, 15, 4, 23, 16, 0, -5 };
-            int[] expected = (int[])arr.Clone();
-            Array.Sort(expected);
+            int[] values = { 17, 4, 42, 8, 15, 4, 23, 16, 0, -5 };
+            int[] expectedValues = (int[])values.Clone();
+            Array.Sort(expectedValues);
 
-            QuickSortAlgorithm.QuickSort(arr);
+            QuickSortAlgorithm.QuickSort(values);
 
-            Assert.Equal(expected, arr);
+            Assert.Equal(expectedValues, values);
         }
     }
 }

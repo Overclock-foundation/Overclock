@@ -6,40 +6,54 @@ namespace Overclock.Algorithms.Graph
     {
         public static Dictionary<int, int> Dijkstra(
             Dictionary<int, List<(int neighbor, int weight)>> graph,
-            int start)
+            int startNode)
         {
-            var distances = new Dictionary<int, int> { [start] = 0 };
-            var visited = new HashSet<int>();
+            var shortestDistances = new Dictionary<int, int> { [startNode] = 0 };
+            var visitedNodes = new HashSet<int>();
 
             while (true)
             {
-                int? current = null;
-                foreach (var (node, distance) in distances)
-                {
-                    if (visited.Contains(node))
-                        continue;
+                int? currentNode = FindClosestUnvisitedNode(shortestDistances, visitedNodes);
 
-                    if (current is null || distance < distances[current.Value])
-                        current = node;
-                }
-
-                if (current is null)
+                if (currentNode is null)
                     break;
 
-                visited.Add(current.Value);
+                visitedNodes.Add(currentNode.Value);
 
-                if (!graph.TryGetValue(current.Value, out var edges))
+                if (!graph.TryGetValue(currentNode.Value, out var edges))
                     continue;
 
                 foreach (var (neighbor, weight) in edges)
                 {
-                    int candidate = distances[current.Value] + weight;
-                    if (!distances.TryGetValue(neighbor, out int known) || candidate < known)
-                        distances[neighbor] = candidate;
+                    int distanceThroughCurrent = shortestDistances[currentNode.Value] + weight;
+
+                    if (!shortestDistances.TryGetValue(neighbor, out int knownDistance)
+                        || distanceThroughCurrent < knownDistance)
+                    {
+                        shortestDistances[neighbor] = distanceThroughCurrent;
+                    }
                 }
             }
 
-            return distances;
+            return shortestDistances;
+        }
+
+        private static int? FindClosestUnvisitedNode(
+            Dictionary<int, int> shortestDistances,
+            HashSet<int> visitedNodes)
+        {
+            int? closestNode = null;
+
+            foreach (var (node, distance) in shortestDistances)
+            {
+                if (visitedNodes.Contains(node))
+                    continue;
+
+                if (closestNode is null || distance < shortestDistances[closestNode.Value])
+                    closestNode = node;
+            }
+
+            return closestNode;
         }
     }
 }

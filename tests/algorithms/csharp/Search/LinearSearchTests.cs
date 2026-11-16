@@ -13,9 +13,9 @@ namespace Overclock.Algorithms.Tests.Search
         [InlineData(new[] { 42 }, 42, 0)]
         [InlineData(new[] { 42 }, 7, -1)]
         [InlineData(new int[] { }, 1, -1)]
-        public void ReturnsIndexOrMinusOne(int[] arr, int target, int expected)
+        public void ReturnsIndexOrMinusOne(int[] values, int targetValue, int expectedIndex)
         {
-            Assert.Equal(expected, LinearSearchAlgorithm.LinearSearch(arr, target));
+            Assert.Equal(expectedIndex, LinearSearchAlgorithm.LinearSearch(values, targetValue));
         }
 
         [Fact]
@@ -39,11 +39,11 @@ namespace Overclock.Algorithms.Tests.Search
         [Fact]
         public void DoesNotMutateTheArray()
         {
-            int[] arr = { 3, 1, 2 };
+            int[] values = { 3, 1, 2 };
 
-            LinearSearchAlgorithm.LinearSearch(arr, 1);
+            LinearSearchAlgorithm.LinearSearch(values, 1);
 
-            Assert.Equal(new[] { 3, 1, 2 }, arr);
+            Assert.Equal(new[] { 3, 1, 2 }, values);
         }
     }
 }
