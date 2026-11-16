@@ -14,8 +14,9 @@
   </ItemGroup>
 
   <ItemGroup Label="Algorithm sources under test">
-    <Compile Include="../../algorithms/Search/C#/*.cs" Link="Algorithms/Search/%(Filename)%(Extension)" />
-    <Compile Include="../../algorithms/Sort/C#/*.cs" Link="Algorithms/Sort/%(Filename)%(Extension)" />
+    <Compile Include="../../../algorithms/Search/C#/*.cs" Link="Algorithms/Search/%(Filename)%(Extension)" />
+    <Compile Include="../../../algorithms/Sort/C#/*.cs" Link="Algorithms/Sort/%(Filename)%(Extension)" />
+    <Compile Include="../../../algorithms/Graph/C#/*.cs" Link="Algorithms/Graph/%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
