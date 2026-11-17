@@ -3,7 +3,7 @@ namespace Overclock.Algorithms.Search
     /// <summary>Provides binary search operations.</summary>
     public static class BinarySearchAlgorithm
     {
-        /// <summary>Returns the index of a target in an ascendingly sorted array.</summary>
+        /// <summary>Returns the index of a target in an array sorted in ascending order.</summary>
         /// <param name="arr">The array to search.</param>
         /// <param name="target">The value to find.</param>
         /// <returns>The index of <paramref name="target"/>, or -1 if it is absent.</returns>

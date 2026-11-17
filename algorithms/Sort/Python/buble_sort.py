@@ -1,5 +1,11 @@
+"""Bubble sort implementation."""
+
+
 def bubble_sort(arr: list[int]) -> list[int]:
-    """Sort ``arr`` in place with bubble sort and return it."""
+    """Sort ``arr`` in place with bubble sort and return it.
+
+    The sort is stable and stops early once a pass makes no swaps.
+    """
     n = len(arr)
 
     for i in range(n - 1):

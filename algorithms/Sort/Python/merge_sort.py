@@ -1,5 +1,11 @@
+"""Merge sort implementation."""
+
+
 def merge_sort(arr: list[int]) -> list[int]:
-    """Sort ``arr`` in place with merge sort and return it."""
+    """Sort ``arr`` in place with merge sort and return it.
+
+    The sort is stable and uses ``O(n)`` auxiliary memory for the merged runs.
+    """
     if len(arr) < 2:
         return arr
 

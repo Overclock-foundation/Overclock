@@ -1,11 +1,15 @@
+"""Dijkstra's shortest-path algorithm for non-negative edge weights."""
+
 import math
 
 
 def dijkstra(graph: dict[int, list[tuple[int, int]]], start: int) -> dict[int, float]:
     """Return the shortest distance from ``start`` to every reachable node.
 
-    ``graph`` maps a node to a list of ``(neighbor, weight)`` pairs.
-    Unreachable nodes keep a distance of ``math.inf``.
+    ``graph`` maps a node to a list of ``(neighbor, weight)`` pairs, where
+    ``weight`` must be non-negative. The result maps each reachable node to its
+    total distance from ``start``; unreachable nodes are absent from it, and
+    ``start`` always maps to ``0``.
     """
     distances: dict[int, float] = {start: 0}
     visited: set[int] = set()
