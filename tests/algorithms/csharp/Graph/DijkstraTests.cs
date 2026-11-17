@@ -121,6 +121,24 @@ namespace Overclock.Algorithms.Tests.Graph
         }
 
         [Fact]
+        public void HandlesNegativeNodeIds()
+        {
+            var graph = new Dictionary<int, List<(int neighbor, int weight)>>
+            {
+                [-1] = new() { (0, 2) },
+                [0] = new() { (1, 3) },
+                [1] = new(),
+            };
+
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(graph, -1);
+
+            Assert.Equal(3, shortestDistances.Count);
+            Assert.Equal(0, shortestDistances[-1]);
+            Assert.Equal(2, shortestDistances[0]);
+            Assert.Equal(5, shortestDistances[1]);
+        }
+
+        [Fact]
         public void DoesNotMutateTheGraph()
         {
             var graph = GraphFixtures.WeightedGraph();
@@ -130,6 +148,7 @@ namespace Overclock.Algorithms.Tests.Graph
 
             DijkstraAlgorithm.Dijkstra(graph, 0);
 
+            Assert.Equal<int>(graphSnapshot.Keys.OrderBy(node => node), graph.Keys.OrderBy(node => node));
             foreach (var (node, edges) in graphSnapshot)
                 Assert.Equal(edges, graph[node]);
         }
@@ -148,13 +167,16 @@ namespace Overclock.Algorithms.Tests.Graph
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void EveryDistanceIsReachableFromStart(int startNode)
+        public void ReturnsExactlyTheReachableNodes(int startNode)
         {
-            Dictionary<int, int> shortestDistances =
-                DijkstraAlgorithm.Dijkstra(GraphFixtures.WeightedGraph(), startNode);
+            var graph = GraphFixtures.WeightedGraph();
 
+            Dictionary<int, int> shortestDistances = DijkstraAlgorithm.Dijkstra(graph, startNode);
+
+            Assert.Equal<int>(
+                GraphFixtures.ReachableFrom(graph, startNode).OrderBy(node => node),
+                shortestDistances.Keys.OrderBy(node => node));
             Assert.Equal(0, shortestDistances[startNode]);
-            Assert.All(shortestDistances.Values, distance => Assert.True(distance >= 0));
         }
     }
 }

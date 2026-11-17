@@ -13,6 +13,9 @@ Changelog for the full-stack polyglot benchmarking platform which visualizes Big
 - Fixed `tests/conftest.py` resolving `algorithms/` one directory too high, which made every Python
   algorithm test fail during fixture setup.
 - Removed trailing whitespace in `quick_sort` sources and added missing final newlines to C# files.
+- Strengthened the C# xUnit suite: graph tests now assert the exact set of reachable nodes and
+  detect added or removed graph keys, `BinarySearchTests` no longer indexes with a possible `-1`,
+  and the range overloads of `MergeSort`/`QuickSort` plus negative node IDs in `Dijkstra` are covered.
 
 ## 2026-11-13 - Main project structure and initial implementation
 

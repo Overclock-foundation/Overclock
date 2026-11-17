@@ -69,6 +69,7 @@ namespace Overclock.Algorithms.Tests.Graph
 
             BfsAlgorithm.Bfs(graph, 0);
 
+            Assert.Equal<int>(graphSnapshot.Keys.OrderBy(node => node), graph.Keys.OrderBy(node => node));
             foreach (var (node, neighbors) in graphSnapshot)
                 Assert.Equal(neighbors, graph[node]);
         }
@@ -80,10 +81,15 @@ namespace Overclock.Algorithms.Tests.Graph
         [InlineData(3)]
         [InlineData(4)]
         [InlineData(5)]
-        public void EveryNodeIsVisitedExactlyOnce(int startNode)
+        public void VisitsExactlyTheReachableNodesOnce(int startNode)
         {
-            List<int> visitedOrder = BfsAlgorithm.Bfs(GraphFixtures.TreeGraph(), startNode);
+            var graph = GraphFixtures.TreeGraph();
 
+            List<int> visitedOrder = BfsAlgorithm.Bfs(graph, startNode);
+
+            Assert.Equal<int>(
+                GraphFixtures.ReachableFrom(graph, startNode).OrderBy(node => node),
+                visitedOrder.OrderBy(node => node));
             Assert.Equal(visitedOrder.Count, visitedOrder.Distinct().Count());
             Assert.Equal(startNode, visitedOrder[0]);
         }
