@@ -1,8 +1,15 @@
+"""Breadth-first search over an adjacency-list graph."""
+
 from collections import deque
 
 
 def bfs(graph: dict[int, list[int]], start: int) -> list[int]:
-    """Return the nodes of ``graph`` in breadth-first order from ``start``."""
+    """Return the nodes of ``graph`` in breadth-first order from ``start``.
+
+    ``graph`` maps a node to the list of its neighbors. Nodes that are not
+    reachable from ``start`` are omitted, and ``start`` itself is always the
+    first element of the result, even when it is absent from ``graph``.
+    """
     visited: set[int] = {start}
     order: list[int] = []
     queue: deque[int] = deque([start])

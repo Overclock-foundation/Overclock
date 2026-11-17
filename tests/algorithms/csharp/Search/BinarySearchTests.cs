@@ -40,7 +40,10 @@ namespace Overclock.Algorithms.Tests.Search
         {
             int[] values = { 1, 2, 2, 2, 3 };
 
-            Assert.Equal(2, values[BinarySearchAlgorithm.BinarySearch(values, 2)]);
+            int index = BinarySearchAlgorithm.BinarySearch(values, 2);
+
+            Assert.InRange(index, 1, 3);
+            Assert.Equal(2, values[index]);
         }
 
         [Fact]

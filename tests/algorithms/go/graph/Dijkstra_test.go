@@ -65,6 +65,19 @@ func TestDijkstra(t *testing.T) {
 	}
 }
 
+func TestDijkstraHandlesNegativeNodeIDs(t *testing.T) {
+	graph := map[int][]graphalg.Edge{
+		-1: {{To: 0, Weight: 2}},
+		0:  {{To: 1, Weight: 3}},
+		1:  {},
+	}
+
+	want := map[int]float64{-1: 0, 0: 2, 1: 5}
+	if got := graphalg.Dijkstra(graph, -1); !reflect.DeepEqual(got, want) {
+		t.Fatalf("Dijkstra() = %v, want %v", got, want)
+	}
+}
+
 func TestDijkstraStartDistanceIsZero(t *testing.T) {
 	graph := map[int][]graphalg.Edge{0: {{To: 1, Weight: 4}}, 1: {}}
 

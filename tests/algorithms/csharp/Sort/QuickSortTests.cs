@@ -42,6 +42,16 @@ namespace Overclock.Algorithms.Tests.Sort
         }
 
         [Fact]
+        public void SortsOnlyTheRequestedRange()
+        {
+            int[] values = { 9, 5, 1, 4, 2, 8, 7 };
+
+            QuickSortAlgorithm.QuickSort(values, 1, 4);
+
+            Assert.Equal(new[] { 9, 1, 2, 4, 5, 8, 7 }, values);
+        }
+
+        [Fact]
         public void MatchesBuiltinSortOnRandomData()
         {
             int[] values = { 17, 4, 42, 8, 15, 4, 23, 16, 0, -5 };

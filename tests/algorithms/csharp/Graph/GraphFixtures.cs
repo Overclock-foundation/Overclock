@@ -40,5 +40,51 @@ namespace Overclock.Algorithms.Tests.Graph
             [2] = new() { (1, 2), (3, 5) },
             [3] = new(),
         };
+
+        /// <summary>Returns every node reachable from a start node in an adjacency list.</summary>
+        public static HashSet<int> ReachableFrom(Dictionary<int, List<int>> graph, int startNode)
+        {
+            var reachable = new HashSet<int> { startNode };
+            var pending = new Stack<int>();
+            pending.Push(startNode);
+
+            while (pending.Count > 0)
+            {
+                if (!graph.TryGetValue(pending.Pop(), out var neighbors))
+                    continue;
+
+                foreach (int neighbor in neighbors)
+                {
+                    if (reachable.Add(neighbor))
+                        pending.Push(neighbor);
+                }
+            }
+
+            return reachable;
+        }
+
+        /// <summary>Returns every node reachable from a start node in a weighted adjacency list.</summary>
+        public static HashSet<int> ReachableFrom(
+            Dictionary<int, List<(int neighbor, int weight)>> graph,
+            int startNode)
+        {
+            var reachable = new HashSet<int> { startNode };
+            var pending = new Stack<int>();
+            pending.Push(startNode);
+
+            while (pending.Count > 0)
+            {
+                if (!graph.TryGetValue(pending.Pop(), out var edges))
+                    continue;
+
+                foreach (var (neighbor, _) in edges)
+                {
+                    if (reachable.Add(neighbor))
+                        pending.Push(neighbor);
+                }
+            }
+
+            return reachable;
+        }
     }
 }

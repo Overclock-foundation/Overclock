@@ -1,6 +1,8 @@
 package sort
 
 // MergeSort sorts arr in place with merge sort and returns it.
+//
+// The sort is stable and uses O(n) auxiliary memory for the merged runs.
 func MergeSort(arr []int) []int {
 	if len(arr) < 2 {
 		return arr

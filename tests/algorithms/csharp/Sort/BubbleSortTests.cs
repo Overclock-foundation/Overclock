@@ -22,10 +22,11 @@ namespace Overclock.Algorithms.Tests.Sort
         }
 
         [Fact]
-        public void SortsInPlace()
+        public void SortingIsIdempotent()
         {
             int[] values = { 3, 1, 2 };
 
+            BubbleSortAlgorithm.BubbleSort(values);
             BubbleSortAlgorithm.BubbleSort(values);
 
             Assert.Equal(new[] { 1, 2, 3 }, values);

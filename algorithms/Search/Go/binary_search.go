@@ -1,6 +1,10 @@
+// Package search provides search algorithms over integer slices.
 package search
 
-// BinarySearch returns the index of target in the sorted arr, or -1.
+// BinarySearch returns the index of target in arr sorted in ascending order, or -1.
+//
+// When arr contains duplicates, any index holding target may be returned. The
+// slice is not modified.
 func BinarySearch(arr []int, target int) int {
 	low, high := 0, len(arr)-1
 

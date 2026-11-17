@@ -7,23 +7,17 @@ type Edge struct {
 }
 
 // Dijkstra returns the shortest distance from start to every reachable node.
-// Unreachable nodes are absent from the result.
+//
+// graph maps a node to its outgoing edges, whose weights must be non-negative.
+// Unreachable nodes are absent from the result, and start always maps to 0.
+// The graph is not modified.
 func Dijkstra(graph map[int][]Edge, start int) map[int]float64 {
 	distances := map[int]float64{start: 0}
 	visited := map[int]bool{}
 
 	for {
-		current := -1
-		for node, distance := range distances {
-			if visited[node] {
-				continue
-			}
-			if current == -1 || distance < distances[current] {
-				current = node
-			}
-		}
-
-		if current == -1 {
+		current, found := closestUnvisitedNode(distances, visited)
+		if !found {
 			break
 		}
 
@@ -38,4 +32,23 @@ func Dijkstra(graph map[int][]Edge, start int) map[int]float64 {
 	}
 
 	return distances
+}
+
+// closestUnvisitedNode returns the unvisited node with the smallest known
+// distance and reports whether such a node exists.
+func closestUnvisitedNode(distances map[int]float64, visited map[int]bool) (int, bool) {
+	closest := 0
+	found := false
+
+	for node, distance := range distances {
+		if visited[node] {
+			continue
+		}
+		if !found || distance < distances[closest] {
+			closest = node
+			found = true
+		}
+	}
+
+	return closest, found
 }
