@@ -30,6 +30,7 @@ Before triggering the Spec-Kit workflow, determine the scope of the task:
 ### Absolute prohibition
 
 Until BOTH approval gates below are passed (for Mandatory Spec-Kit tasks), you MUST NOT:
+
 - create, edit, rename, or delete any file outside `specs/` (source code,
   tests, configs, Docker files, CI, dependencies, `CHANGELOG.md`, docs);
 - run commands that modify the repository (formatters with auto-fix,
@@ -100,6 +101,7 @@ Use the Spec-Kit skills located under `.github/skills/` (`speckit-constitution`,
 - Write clear, readable, maintainable code with appropriate types, validation,
   and explicit error handling. Avoid silent failures and broad exception
   handling.
+- Go Code Quality & Linting: All Go code must strictly comply with the project's `.golangci.yml` (or `.golangci.yaml`) configuration. Write idiomatic Go: handle all returned errors explicitly (never ignore errors with `_` unless documented), wrap errors with context (`fmt.Errorf("...: %w", err)`), pass `context.Context` as the first parameter for I/O or blocking operations, and write clear GoDoc comments for exported symbols.
 - Keep business logic separate from transport layers. Follow the existing
   patterns for the synchronous Flask application, asynchronous FastAPI API,
   CLI, shared services, models, and schemas.
@@ -124,6 +126,13 @@ Use the Spec-Kit skills located under `.github/skills/` (`speckit-constitution`,
   repository changes.
 - Write all documentation, changelog entries, code comments, and technical
   summaries in clear, concise, natural English.
+- **Markdown Formatting:** All Markdown files (`.md`) must strictly comply with the project's `.markdownlint.jsonc` rules (or global markdownlint config):
+  - Use ATX-style headings (`#`) and do not use bold text as headings (`MD036`).
+  - Use dashes (`-`) for unordered lists (`MD004`) with 2-space indentation for nested items (`MD007`).
+  - Always specify the language identifier for fenced code blocks (`MD040`).
+  - Properly indent nested lists and fenced code blocks inside ordered lists (by 3 spaces) so they do not break sequential list numbering (`MD029`).
+  - Avoid raw inline HTML tags unless explicitly permitted in `.markdownlint.jsonc` (`MD033`).
+  - Before completing any task that modifies `.md` files, run `markdownlint-cli2 --fix "**/*.md" "#.venv" "#.git"` (or `npx markdownlint-cli2 --fix "**/*.md" "#.venv" "#.git"`), then manually resolve any remaining warnings reported by `markdownlint-cli2`.
 
 ## Branches, Merges, and Commits
 
@@ -141,6 +150,9 @@ Use the Spec-Kit skills located under `.github/skills/` (`speckit-constitution`,
 
 ## Verification
 
+- Before completing any task that modifies Go files (`.go`), run `golangci-lint run --fix ./...` (or `golangci-lint run ./...` if auto-fix is not appropriate) from the Go module root, and manually resolve all remaining linter issues.
+- When the user writes `check-go`, run `golangci-lint run ./...` from the Go module root to verify code quality across the project. Do not apply automatic fixes unless requested; report the command and its result.
+- When the user writes `fix-docs`, run `markdownlint-cli2 --fix "**/*.md" "#.venv" "#.git"` from the repository root to auto-fix Markdown formatting, then manually resolve any remaining lint warnings and report the result.
 - When the user writes `check-styles`, run `ruff check .` from the repository
   root to check Python code style across the project. Do not apply automatic
   fixes unless requested; report the command and its result.

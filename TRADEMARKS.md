@@ -47,5 +47,3 @@ For co-branding, logo use, or other use that is not clearly factual, contact
 must be explicit and in writing.
 
 This document is informational and is not legal advice. Names may have additional rights under applicable law.
-
-_Last reviewed: 2026-09-16_

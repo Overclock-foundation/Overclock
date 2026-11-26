@@ -23,7 +23,9 @@ Make sure you have the following installed locally:
 - Git
 
 ## Local setup
-# FIXME: Update this section with the correct local setup instructions.
+
+### FIXME: Update this section with the correct local setup instructions
+
 Follow the [Quick Start (Docker)](README.md#quick-start-docker) section in the README:
 
 1. Clone the repo and set up your environment

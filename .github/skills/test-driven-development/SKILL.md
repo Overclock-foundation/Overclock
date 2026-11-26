@@ -37,7 +37,7 @@ The examples below use TypeScript for illustration; the workflow is identical in
 
 ## The TDD Cycle
 
-```
+```text
     RED                GREEN              REFACTOR
  Write a test    Write minimal code    Clean up the
  that fails  ──→  to make it pass  ──→  implementation  ──→  (repeat)
@@ -97,7 +97,7 @@ Run tests after every refactor step to confirm nothing broke.
 
 When a bug is reported, **do not start by trying to fix it.** Start by writing a test that reproduces it.
 
-```
+```text
 Bug report arrives
        │
        ▼
@@ -145,7 +145,7 @@ export async function completeTask(id: string): Promise<Task> {
 
 Invest testing effort according to the pyramid — most tests should be small and fast, with progressively fewer tests at higher levels:
 
-```
+```text
           ╱╲
          ╱  ╲         E2E Tests (~5%)
         ╱    ╲        Full user flows, real browser
@@ -174,7 +174,7 @@ Small tests should make up the vast majority of your suite. They're fast, reliab
 
 ### Decision Guide
 
-```
+```text
 Is it pure logic with no side effects?
   → Unit test (small)
 
@@ -235,7 +235,7 @@ Duplication in tests is acceptable when it makes each test independently underst
 
 Use the simplest test double that gets the job done. The more your tests use real code, the more confidence they provide.
 
-```
+```text
 Preference order (most to least preferred):
 1. Real implementation  → Highest confidence, catches real bugs
 2. Fake                 → In-memory version of a dependency (e.g., fake DB)
@@ -315,7 +315,7 @@ For anything that runs in a browser, unit tests alone aren't enough — you need
 
 ### The DevTools Debugging Workflow
 
-```
+```text
 1. REPRODUCE: Navigate to the page, trigger the bug, screenshot
 2. INSPECT: Console errors? DOM structure? Computed styles? Network responses?
 3. DIAGNOSE: Compare actual vs expected — is it HTML, CSS, JS, or data?
@@ -344,7 +344,7 @@ For detailed DevTools setup instructions and workflows, see `browser-testing-wit
 
 For complex bug fixes, spawn a subagent to write the reproduction test:
 
-```
+```text
 Main agent: "Spawn a subagent to write a test that reproduces this bug:
 [bug description]. The test should fail with the current code."
 

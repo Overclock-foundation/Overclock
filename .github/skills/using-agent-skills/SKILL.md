@@ -13,7 +13,7 @@ Agent Skills is a collection of engineering workflow skills organized by develop
 
 When a task arrives, identify the development phase and apply the corresponding skill:
 
-```
+```text
 Task arrives
     │
     ├── Spec-Kit Methodology & Workflow
@@ -46,7 +46,7 @@ These behaviors apply at all times, across all skills. They are non-negotiable.
 
 Before implementing anything non-trivial, explicitly state your assumptions:
 
-```
+```text
 ASSUMPTIONS I'M MAKING:
 1. [assumption about requirements]
 2. [assumption about architecture]
@@ -68,6 +68,7 @@ When you encounter inconsistencies, conflicting requirements, or unclear specifi
 ### 3. Push Push Back When Warranted
 
 When an approach has clear problems:
+
 - Point out the issue directly
 - Explain the concrete downside
 - Propose an alternative
@@ -91,7 +92,7 @@ Every task is complete only when verified with passing tests, linter checks, or 
 
 For feature development, the standard sequence using your active skills is:
 
-```
+```text
 1. speckit-constitution  → Verify alignment with project architecture & rules
 2. speckit-specify       → Write spec.md (requirements & scope)
 3. speckit-clarify       → Resolve ambiguous points (if any)

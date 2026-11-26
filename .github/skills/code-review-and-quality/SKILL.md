@@ -104,7 +104,7 @@ Prefer the remedy that removes moving pieces over one that spreads the same comp
 
 Small, focused changes are easier to review, faster to merge, and safer to deploy. Target these sizes:
 
-```
+```text
 ~100 lines changed   → Good. Reviewable in one sitting.
 ~300 lines changed   → Acceptable if it's a single logical change.
 ~1000 lines changed  → Too large. Split it.
@@ -143,7 +143,7 @@ Every change needs a description that stands alone in version control history.
 
 Before looking at code, understand the intent:
 
-```
+```text
 - What is this change trying to accomplish?
 - What spec or task does it implement?
 - What is the expected behavior change?
@@ -153,7 +153,7 @@ Before looking at code, understand the intent:
 
 Tests reveal intent and coverage:
 
-```
+```text
 - Do tests exist for the change?
 - Do they test behavior (not implementation details)?
 - Are edge cases covered?
@@ -167,7 +167,7 @@ Answer the last question by experiment, not by reading. Invert one condition the
 
 Walk through the code with the five axes in mind:
 
-```
+```text
 For each file changed:
 1. Correctness: Does this code do what the test says it should?
 2. Readability: Can I understand this without help?
@@ -196,7 +196,7 @@ This prevents authors from treating all feedback as mandatory and wasting time o
 
 Check the author's verification story:
 
-```
+```text
 - What tests were run?
 - Did the build pass?
 - Was the change tested manually?
@@ -208,7 +208,7 @@ Check the author's verification story:
 
 Use different models for different review perspectives:
 
-```
+```text
 Model A writes the code
     │
     ▼
@@ -224,7 +224,8 @@ Human makes the final call
 This catches issues that a single model might miss — different models have different blind spots.
 
 **Example prompt for a review agent:**
-```
+
+```text
 Review this code change for correctness, security, and adherence to
 our project conventions. The spec says [X]. The change should [Y].
 Flag any issues as Critical, Required, Optional, or Nit.
@@ -240,7 +241,7 @@ After any refactoring or implementation change, check for orphaned code:
 
 Don't leave dead code lying around — it confuses future readers and agents. But don't silently delete things you're not sure about. When in doubt, ask.
 
-```
+```text
 DEAD CODE IDENTIFIED:
 - formatLegacyDate() in src/utils/date.ts — replaced by formatDate()
 - OldTaskCard component in src/components/ — replaced by TaskCard
@@ -283,6 +284,7 @@ When reviewing code — whether written by you, another agent, or a human:
 Part of code review is dependency review:
 
 **Before adding any dependency:**
+
 1. Does the existing stack solve this? (Often it does.)
 2. How large is the dependency? (Check bundle impact.)
 3. Is it actively maintained? (Check last commit, open issues.)
@@ -348,6 +350,7 @@ For triaging `npm audit` findings and supply-chain risk (typosquatting, compromi
 - [ ] **Approve** — Ready to merge
 - [ ] **Request changes** — Issues must be addressed
 ```
+
 ## See Also
 
 - For detailed security review guidance, see `../../references/security-checklist.md`
