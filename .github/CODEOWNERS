@@ -6,7 +6,9 @@
 *.md    @LyapinAlexey
 
 # Core application code
+/C#/   @vadisarychev1514-pixel
 /algorithms/   @LyapinAlexey
+/internal/   @LyapinAlexey
 
 # CI & infrastructure
 /.github/ @LyapinAlexey
